@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic-Tac-Toe</title>
+  <style>
+    body{
+      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2017%2F11%2F22%2F330673-polka_dots-gradient-soft_gradient-simple-simple_background-Game_Grumps-Steam_Train-748x421.jpg&f=1&nofb=1&ipt=4ef143bda4861d09a58af97cebad4d343a8e0ece34cd58dab0ff56989523f663&ipo=images');
+      background-size: contain;
+      font-family: Montserrat, sans-serif;
+    }
+     
+.list {
+  background: white;
+  box-shadow: 0px 0px 4px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  list-style: none;
+}
+
+.item a {
+  width:100%;
+  text-decoration: none;
+  color: black;
+  transition: 100ms ease-in;
+}
+
+.item a:hover {
+  color:#0fcae2;
+}
+
+.item {
+  margin-right: auto;
+  margin-left: 2rem;
+}
+
+.btn-primary {
+  font-family: Montserrat, sans-serif;
+  font-size: 1em;
+  background: #0fcae2;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 15px;
+  cursor: pointer;
+  transition:  200ms ;
+}
+
+.btn-primary:hover {
+  background: rgba(0, 255, 34, 0.699);
+}
+H1{
+  MARGIN:0PX;
+}
+  #canvas{
+    width:75vh;
+    height:75vh;
+    display:grid;
+    grid-template-columns:24vh 24vh 24vh;
+    grid-template-rows:24vh 24vh 24vh;
+  
+    }
+  #btn1,#btn2,#btn3,#btn4,#btn5,#btn6,#btn7,#btn8,#btn9{
+    height:100%;
+    width:100%;
+    background-image:url("https://cdn-icons-png.flaticon.com/512/458/458564.png");
+    background-size:cover;
+    background-color:red;
+    padding:0px;  
+    border-width: 0px;
+  }
+  #block1,#block2,#block3,#block4,#block5,#block6,#block7,#block8,#block9{
+    height:97.9%;
+    position: relative;
+    background-color: white;
+    width:97.8%;
+    border: 0.5vh solid black;
+      background-size: 100%;
+  }
+  </style>
+</head>
+<body>
+  <center>
+    <H1>TIC-TAC-TOE(PVP)</H1>
+      <nav>
+        <ul class="list">
+          <li class="item">
+            <a href="#">
+          </li>
+          <li class="item">
+            <a href="https://en.wikipedia.org/wiki/Tic-tac-toe"  target="_blank">About</a>
+          </li> 
+          <li class="item">
+     <a href="https://en.wikipedia.org/wiki/Tic-tac-toe#History"  target="_blank">History</a>
+          </li>
+          <li class="item">
+            <a href="https://www.wikihow.com/Play-Tic-Tac-Toe" target="_blank">How To Play</a>
+          </li>
+          <li class="item">
+         <button class="btn-primary" id="restart" onClick="window.location.href=window.location.href">Restart</button>
+          </li>
+        </ul>
+      </nav>
+  <div id="canvas">
+    <div id="block1"><button id="btn1"></button></div>
+    <div id="block2"><button id="btn2"></button></div>
+    <div id="block3"><button id="btn3"></button></div>
+    <div id="block4"><button id="btn4"></button></div>
+    <div id="block5"><button id="btn5"></button></div>
+    <div id="block6"><button id="btn6"></button></div>
+    <div id="block7"><button id="btn7"></button></div>
+    <div id="block8"><button id="btn8"></button></div>
+    <div id="block9"><button id="btn9" ></button></div>
+  </div>
+  <h1 id="result">LET'S SEE WHO WINS</h1>
+</center>
+<script>
+  var winner=0;
+var flag=0;
+let turn=0;
+function check(){
+      for(let m=0;m<=7;m+=3){
+      if(res[m]==res[m+1]){
+        if(res[m]==res[m+2])
+      {
+        flag=1;
+        winner=res[m];
+        win.call();
+      }}
+    }
+  for(let n=0;n<4;n++){
+      if(res[n]==res[n+3] )
+      {
+        if(res[n]==res[n+6]){
+          flag=1;
+        winner=res[n];
+        win.call();
+     }}
+    }
+  if(res[0]==res[4] ){
+    if(res[0]==res[8])
+    {
+      flag=1;
+      winner=res[0];
+      win.call();
+    }
+  }
+  if(res[2]==res[4]){
+    if(res[4]==res[6])
+    {
+      flag=1;
+      winner=res[2];
+      win.call();
+    }
+}
+if(turn>8 && flag==0){
+    document.getElementById("result").innerHTML="No one wins.Better luck next time!";
+window.stop();}
+  }
+    function win(){
+      for(let n=0;n<9;n++){
+      buttons[n].disabled = true;
+    }
+    if(winner==1 && flag==1){
+    document.getElementById("result").innerHTML="Player 1 is the WINNER!!!!!";
+    }
+if(winner==2 && flag==1){
+    document.getElementById("result").innerHTML="Player 2 is the WINNER!!!!!"; 
+}
+   }
+var res=[24124,1422,543,65,346,3463,342563,3462,252];
+function changer(){
+  if(turn%2!=0){
+   blocks[buttons.indexOf(this)].style.backgroundImage="url('https://cdn-icons-png.flaticon.com/512/7920/7920741.png')";
+    res[buttons.indexOf(this)]=2;
+  }
+  else{
+     blocks[buttons.indexOf(this)].style.backgroundImage="url('https://cdn-icons-png.flaticon.com/512/7920/7920765.png')";
+    res[buttons.indexOf(this)]=1;
+  }
+   turn=turn+1;
+  this.style.display = "none";
+  check.call();
+}
+var blocks=[document.getElementById("block1"),
+document.getElementById("block2"), 
+document.getElementById("block3"),
+document.getElementById("block4"),
+document.getElementById("block5"),
+document.getElementById("block6"),
+document.getElementById("block7"),
+document.getElementById("block8"),
+document.getElementById("block9")];
+var buttons=[document.getElementById("btn1"),
+document.getElementById("btn2"), 
+document.getElementById("btn3"),
+document.getElementById("btn4"),
+document.getElementById("btn5"),
+document.getElementById("btn6"),
+document.getElementById("btn7"),
+document.getElementById("btn8"),
+document.getElementById("btn9")];
+for(let n=0;n<9;n++){
+  buttons[n].addEventListener("click",changer);
+}
+</script>
+</body>
+</html>
